@@ -135,11 +135,8 @@ class DrawingState extends ChangeNotifier {
   }
 
   Offset toWorld(Offset screen) {
-    final v = screenToWorld.transform3(
-        ui.Offset(screen.dx, screen.dy) as dynamic != null
-            ? Vector4(screen.dx, screen.dy, 0, 1)
-            : Vector4(screen.dx, screen.dy, 0, 1));
-    return Offset(v.x / v.w, v.y / v.w);
+  final v = screenToWorld.transform4(Vector4(screen.dx, screen.dy, 0, 1));
+  return Offset(v.x / v.w, v.y / v.w);
   }
 
   void applyPanZoom(Matrix4 delta) {
